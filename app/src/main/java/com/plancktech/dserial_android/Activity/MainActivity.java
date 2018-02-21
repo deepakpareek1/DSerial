@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,16 +11,14 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.provider.MediaStore;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -34,9 +31,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-
 import com.plancktech.dserial_android.Constants.Constants;
-import com.plancktech.dserial_android.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -66,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        /*getSupportActionBar().hide();
         setContentView(R.layout.webview);
         webview = (WebView) findViewById(R.id.webView);
 
@@ -74,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage(Constants.INITIALIZING);
         progressDialog.setCancelable(false);
 
-        loadRequest(MainActivity.this);
+        loadRequest(MainActivity.this);*/
+
     }
 
     public void loadRequest(final Context c) {
