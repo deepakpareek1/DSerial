@@ -61,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intentServer = new Intent(this, Server.class);
+        startActivity(intentServer);
+
+        Intent intentClient = new Intent(this, Client.class);
+        startActivity(intentClient);
+
         /*getSupportActionBar().hide();
         setContentView(R.layout.webview);
         webview = (WebView) findViewById(R.id.webView);
