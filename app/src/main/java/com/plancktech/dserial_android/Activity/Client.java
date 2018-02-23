@@ -56,10 +56,10 @@ public class Client extends Activity {
             try {
                 InetAddress serverAddr = InetAddress.getByName(SERVER_IP);
 
-                //socket = new Socket(serverAddr, SERVERPORT);
+                socket = new Socket(serverAddr, SERVERPORT);
 
-                Socket socket = new Socket();
-                socket.connect(new InetSocketAddress(serverAddr, SERVERPORT), 5000);
+                //Socket socket = new Socket();
+                //socket.connect(new InetSocketAddress(serverAddr, SERVERPORT), 5000);
 
             } catch (UnknownHostException e1) {
                 e1.printStackTrace();
