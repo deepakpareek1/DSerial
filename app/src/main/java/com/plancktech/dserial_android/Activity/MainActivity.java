@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
@@ -29,9 +30,13 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.plancktech.dserial_android.Constants.Constants;
+import com.plancktech.dserial_android.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,16 +62,59 @@ public class MainActivity extends AppCompatActivity {
     private long size = 0;
     private static final int PERMISSION_REQUEST_CODE = 123;
 
+    // Server 1
+    Server_1 server1;
+    TextView infoip, msg;
+
+    // Client 1
+    TextView response;
+    EditText editTextAddress, editTextPort;
+    Button buttonConnect, buttonClear;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intentServer = new Intent(this, Server.class);
-        startActivity(intentServer);
+        //Intent intentServer = new Intent(this, Server.class);
+        //startActivity(intentServer);
 
-        Intent intentClient = new Intent(this, Client.class);
-        startActivity(intentClient);
+        //Intent intentClient = new Intent(this, Client.class);
+        //startActivity(intentClient);
+
+        // Server 1
+        setContentView(R.layout.activity_server1);
+        infoip = (TextView) findViewById(R.id.infoip);
+        msg = (TextView) findViewById(R.id.msg);
+        server1 = new Server_1(this);
+        infoip.setText(server1.getIpAddress()+":"+server1.getPort());
+
+        // Client 1
+        /*setContentView(R.layout.activity_client1);
+        editTextAddress = (EditText) findViewById(R.id.addressEditText);
+        editTextPort = (EditText) findViewById(R.id.portEditText);
+        buttonConnect = (Button) findViewById(R.id.connectButton);
+        buttonClear = (Button) findViewById(R.id.clearButton);
+        response = (TextView) findViewById(R.id.responseTextView);
+
+        buttonConnect.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                Client_1 myClient = new Client_1(editTextAddress.getText()
+                        .toString(), Integer.parseInt(editTextPort
+                        .getText().toString()), response);
+                myClient.execute();
+            }
+        });
+
+        buttonClear.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                response.setText("");
+            }
+        });*/
 
         /*getSupportActionBar().hide();
         setContentView(R.layout.webview);
@@ -431,5 +479,11 @@ public class MainActivity extends AppCompatActivity {
                 && result3 == PackageManager.PERMISSION_GRANTED
                 && result4 == PackageManager.PERMISSION_GRANTED
                 && result5 == PackageManager.PERMISSION_GRANTED;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        server1.onDestroy();
     }
 }
