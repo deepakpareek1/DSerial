@@ -76,18 +76,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Intent intentServer = new Intent(this, Server.class);
-        //startActivity(intentServer);
+        // Server
+        /*Intent intentServer = new Intent(this, Server.class);
+        startActivity(intentServer);*/
 
-        //Intent intentClient = new Intent(this, Client.class);
-        //startActivity(intentClient);
+        // Client
+        /*Intent intentClient = new Intent(this, Client.class);
+        startActivity(intentClient);*/
 
         // Server 1
-        setContentView(R.layout.activity_server1);
+        /*setContentView(R.layout.activity_server1);
         infoip = (TextView) findViewById(R.id.infoip);
         msg = (TextView) findViewById(R.id.msg);
         server1 = new Server_1(this);
-        infoip.setText(server1.getIpAddress()+":"+server1.getPort());
+        infoip.setText(server1.getIpAddress()+":"+server1.getPort());*/
 
         // Client 1
         /*setContentView(R.layout.activity_client1);
@@ -115,6 +117,21 @@ public class MainActivity extends AppCompatActivity {
                 response.setText("");
             }
         });*/
+
+
+        // Start broadcasting IP and PORT as a Server using UDP
+        setContentView(R.layout.activity_server1);
+        msg = (TextView) findViewById(R.id.msg);
+        DiscoverFromServer.getInstance().setActivity(this);
+        Thread discoveryServerThread = new Thread(DiscoverFromServer.getInstance());
+        discoveryServerThread.start();
+
+        // Start discovering server IP and Port as a Client using UDP
+        /*setContentView(R.layout.activity_client1);
+        response = (TextView) findViewById(R.id.responseTextView);
+        DiscoverFromClient.getInstance().setActivity(this);
+        Thread discoveryClientThread = new Thread(DiscoverFromClient.getInstance());
+        discoveryClientThread.start();*/
 
         /*getSupportActionBar().hide();
         setContentView(R.layout.webview);
