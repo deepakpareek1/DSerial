@@ -36,6 +36,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.plancktech.dserial_android.Constants.Constants;
+import com.plancktech.dserial_android.Globals.Globals;
 import com.plancktech.dserial_android.R;
 
 import java.io.File;
@@ -71,10 +72,14 @@ public class MainActivity extends AppCompatActivity {
     EditText editTextAddress, editTextPort;
     Button buttonConnect, buttonClear;
 
+    Globals global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        global = (Globals)getApplicationContext();
+
 
         // Server
         /*Intent intentServer = new Intent(this, Server.class);
